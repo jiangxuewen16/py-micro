@@ -7,7 +7,7 @@ from concurrent import futures
 _HOST = '127.0.0.1'
 _PORT = '8111'
 
-server_register = namedtuple('server_register', 'add_server server_class')
+server_register = namedtuple('server_register', 'add_server server_class service_code')
 
 
 class Producer(object):
@@ -38,9 +38,19 @@ class Producer(object):
 
 
 class Consumer(object):
-    def __init__(self):
+    def __init__(self, service_code):
         # todo:从cousul拿取服务地址 address + port
-        self.address = '127.0.0.1'
-        self.port = '8111'
+        self.service_code = service_code
+
+        service_addr = consul.getByCode(service_code)
+        self.address = service_addr.address or _HOST
+        self.port = service_addr.port or _PORT
+        self.conn = grpc.insecure_channel(self.address + ':' + self.port)
+
         pass
+
+    def do(self, ):
+        client = user_pb2_grpc.UserStub(channel=self.conn)
+
+        self.conn
 
