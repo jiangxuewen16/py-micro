@@ -4,10 +4,12 @@ from collections import namedtuple
 import grpc
 from concurrent import futures
 
+from py_consul import ConsulMicroServer
+
 _HOST = '127.0.0.1'
 _PORT = '8111'
 
-server_register = namedtuple('server_register', 'add_server server_class service_code')
+server_register = namedtuple('server_register', 'service_code add_server server_class stub req_msg_struct')
 
 
 class Producer(object):
@@ -42,14 +44,17 @@ class Consumer(object):
         # todo:从cousul拿取服务地址 address + port
         self.service_code = service_code
 
-        service_addr = consul.getByCode(service_code)
-        self.address = service_addr.address or _HOST
-        self.port = service_addr.port or _PORT
+        service_addr = ConsulMicroServer.get_service(service_code)
+
+        self.address = service_addr[0] or _HOST
+        self.port = service_addr[0] or _PORT
+
+        self.stub = service_addr.
         self.conn = grpc.insecure_channel(self.address + ':' + self.port)
 
         pass
 
-    def do(self, ):
+    def do(self, request):
         client = user_pb2_grpc.UserStub(channel=self.conn)
 
         self.conn
