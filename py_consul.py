@@ -1,3 +1,5 @@
+import hashlib
+
 import consul
 
 
@@ -7,12 +9,15 @@ class ConsulMicroServer(object):
         """初始化，连接consul服务器"""
         self._consul = consul.Consul(host, port)
 
-    def register_service(self, name, host, port, tags=None):
+    def reg_service(self, name: str, host, port, tags=None):
         tags = tags or []
+
+        service_id = hashlib.md5(name.encode('utf-8')).hexdigest()      # 服务名称MD5后的服务id
+
         # 注册服务
         self._consul.agent.service.register(
             name,
-            name,
+            service_id,
             host,
             port,
             tags,
