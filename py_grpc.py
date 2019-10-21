@@ -55,7 +55,7 @@ class Consumer(object):
 
         self.stub = service_addr.
         self.req_msg =
-        self.method =
+        self.method = ''
         self.conn = grpc.insecure_channel(self.address + ':' + self.port)
 
         pass
