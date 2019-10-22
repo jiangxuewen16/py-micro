@@ -11,7 +11,6 @@ class ConsulMicroServer(object):
 
     def reg_service(self, name: str, host, port, tags=None):
         tags = tags or []
-
         service_id = hashlib.md5(name.encode('utf-8')).hexdigest()      # 服务名称MD5后的服务id
 
         # 注册服务
@@ -26,8 +25,10 @@ class ConsulMicroServer(object):
 
     def get_service(self, name):
         services = self._consul.agent.services()
-        service = services.get(name)
+        print(services)
+        service = services.get(hashlib.md5(name.encode('utf-8')).hexdigest())
         if not service:
-            return None, None
+            raise Exception("无注册的服务")
+            # return None, None
         # addr = "{0}:{1}".format(service['Address'], service['Port'])
         return service['Address'], service['Port']

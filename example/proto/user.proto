@@ -1,0 +1,19 @@
+syntax = "proto3";
+package User;
+service User {
+    rpc GetUser (Request) returns (UserModel) {}
+    rpc PutUser (UserModel) returns (Request) {}
+}
+
+message Request {
+    int64 user_id = 1;
+}
+message UserModel {
+    int64 user_id = 1;
+    string user_name = 2;
+    string password = 3;
+    message Info {
+        int64 sex = 1;
+        int64 age = 2;
+    }
+}
