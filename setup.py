@@ -30,7 +30,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     LONG_DESCRIPTION = f.read()
 
 # 搜索关键词
-KEYWORDS = "py_micro micro"
+KEYWORDS = "py-micro micro"
 
 # 发布LICENSE
 LICENSE = "MIT"

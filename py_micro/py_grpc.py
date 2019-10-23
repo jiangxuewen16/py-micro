@@ -6,7 +6,7 @@ from types import FunctionType
 import grpc
 from concurrent import futures
 
-from py_consul import ConsulMicroServer
+from py_micro.py_consul import ConsulMicroServer
 
 
 class MicroService(object):
@@ -30,8 +30,6 @@ class MicroService(object):
 
     @classmethod
     def register(cls, servicer_func: FunctionType, service_name: str = None):
-        print(servicer_func)
-
         def my_decorator(func):
             # 如果开启服务注册，则自动注册
             if cls.START_SERVER:
@@ -110,15 +108,3 @@ class MicroService(object):
 #     @classmethod
 #     def push(cls, host, port):
 
-
-"""获取本机ip"""
-
-
-def get_host_ip():
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(('8.8.8.8', 80))
-        ip = s.getsockname()[0]
-    finally:
-        s.close()
-    return ip
