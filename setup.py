@@ -54,7 +54,7 @@ setup(
     # 指定控制台命令
     entry_points={
         'console_scripts': [
-            'demo = demo:main',  # pip安装完成后可使用demo命令调用demo下的main方法
+            # 'demo = demo:main',  # pip安装完成后可使用demo命令调用demo下的main方法
         ],
     },
     keywords=KEYWORDS,
