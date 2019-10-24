@@ -1,5 +1,5 @@
 from example.proto import user_pb2_grpc, user_pb2
-from py_grpc import MicroService
+from py_micro.py_grpc import MicroService
 
 
 @MicroService.register(user_pb2_grpc.add_UserServicer_to_server, 'user.user')

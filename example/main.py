@@ -1,5 +1,5 @@
-from py_grpc import MicroService
 from example.server.service import User
+from py_micro.py_grpc import MicroService
 
 __all__ = ['User']
 

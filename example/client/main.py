@@ -1,5 +1,3 @@
-import hashlib
-
 from example.client import user
 from example.proto import user_pb2
 

@@ -7,7 +7,7 @@ from codecs import open
 from os import path
 
 # 版本号
-VERSION = '0.0.1'
+VERSION = '0.0.3'
 
 # 发布作者
 AUTHOR = "jiangxuewen"
@@ -19,7 +19,7 @@ AUTHOR_EMAIL = "445251692@qq.com"
 URL = "https://github.com/jiangxuewen16/py-micro"
 
 # 项目名称
-NAME = "py_micro"
+NAME = "py-micro"
 
 # 项目简介
 DESCRIPTION = "基于grpc的Python微服务"

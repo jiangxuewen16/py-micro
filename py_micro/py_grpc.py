@@ -1,4 +1,3 @@
-import socket
 import time
 from operator import methodcaller
 from types import FunctionType
@@ -18,7 +17,7 @@ class MicroService(object):
     HOST = '127.0.0.1'
     PORT = 8111
     APP_NAME = ''
-    REG_HOST = '118.126.105.239'
+    REG_HOST = '127.0.0.1'
     REG_PORT = 8500
 
     _INSECURE_CHANNEL_LIST = []  # grpc 连接池
